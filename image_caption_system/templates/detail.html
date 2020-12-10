@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<title>视频篡改检测系统</title>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/video-js.css' %}" >
+    <style type="text/css">
+
+
+footer { color: #fff; font-size: 14px;}
+footer .fcontainer { background-color: #009fd9;}
+footer .fcontainer:nth-child(2) { background-color: #009fd9;}
+.contact { width: 1200px; margin: 0 auto;  padding: 45px 0 55px 0;}
+.contact>h4 { font-size: 20px;  font-weight: initial;}
+.contact .content-container { margin-top: 50px; display: flex; justify-content: space-between; align-items: center;}
+.contact .content-container .content:nth-child(2) { padding: 0 85px; border-left: 1px solid #fff; border-right: 1px solid #fff;}
+.contact .content-container .content>div { display: flex; justify-content: space-between; align-items: center; color: #fff;}
+.contact .content-container .content>div>div { margin-left: 40px;}
+.contact .content-container .content>div>div>a { display: inline-block; margin-top: 6px; color: #fff;}
+.copyright {display: flex;justify-content: space-between;align-items: center;width: 1200px;margin: 0 auto;padding: 12px 0;color: #fff;}
+.copyright>div {display: flex;justify-content: space-between;align-items: center;}
+.copyright>div>span {margin-left: 8px;}
+
+
+#div_nav a.nav-btn{border: 0;background: 0;
+    padding: 0.3em 0.25em;	margin: 0.5em 1.1em 0.5em; color:#fff;
+	border-bottom: 2px solid transparent;
+    transition: border-color 1s;display: inline-block;text-decoration: none;height:40px;line-height: 40px; }
+#div_nav .nav-btn:focus {outline: none;}
+#div_nav a.nav-btn-current {color: #facb7a;	border-bottom:2px currentColor solid;}
+
+
+.wave-box *{padding:0}
+.marquee-box{overflow:hidden;width:100%;position:absolute;left:0;top:0}
+.marquee{width:8000%;height:60px}
+.wave-list-box{float:left}
+.wave-list-box ul{float:left;height:60px;overflow:hidden;zoom:1}
+.wave-list-box ul li{height:60px;width:100%;float:left;line-height:30px;list-style:none; }
+.wave-box{position:relative;height:60px;background:#fff}
+.wave1{position:absolute;overflow:hidden;width:100%;height:60px}
+.wave2{position:absolute;overflow:hidden;width:100%;height:60px}
+.marquee2{position:absolute;top:0;left:0;width:100%;height:60px;overflow:hidden}
+.wave-list{position:relative;width:100%;height:60px;top:0;overflow:hidden}
+.wave-list li{float:left}
+.banner_bolang_bg_1{display:inline-block;height:60px;background:url("{% static 'image/wave_01.png' %}") repeat-x;left:-236px;position:absolute;top:0;width:400%;z-index:999}
+.banner_bolang_bg_2{display:inline-block;height:60px;background:url("{% static 'image/wave_02.png' %}") repeat-x;left:-50px;position:absolute;top:0;width:400%;z-index:998}
+.marquee-up{top:-16px}
+
+
+div.statbanner2 {background-image: linear-gradient(to right, rgb(18, 120, 246), rgb(0, 180, 170));}
+div.statbanner2 span{float: left;padding: 0 20px;line-height: 40px; cursor: pointer; font-family: "Microsoft YaHei",微软雅黑,SimHei,黑体,sans-serif;color: #fff;margin-top: 10px;font-weight: bold;border-radius: 5px 5px 0 0;}
+div.statbanner2 span.over{color: #2188D3;font-weight: bold;background: #F4FCFF;}
+div.statbanner2 span:hover{color: #2188D3;background: #F4FCFF;}
+
+
+.service-banner--video {
+    background: url("{% static 'image/index-bgbanner.png' %}") no-repeat;
+}
+.service-banner {    height: 260px;    padding-left: 40px;    position: relative;margin-left: 100px;}
+.service-banner__title {height: 45px;padding-top: 42px;line-height: 45px;color: #222;font-size: 32px;}
+.service-banner__content {width: 402px;padding-top: 28px;line-height: 34px;font-size: 14px;color: #777;}
+.service-banner__footer {zoom: 1;position: absolute;bottom: 46px;left: 40px;}
+.service-banner__button {float: left;box-sizing: border-box;width: 140px;height: 40px;text-align: center;font-size: 14px;line-height: 38px;border: 1px solid transparent;border-radius: 2px;transition: all 0.3s ease-out;}
+
+.service-banner__button--fill {    border-color: #2a62ff;    background-color: #2a62ff;    color: #fff;text-decoration: none;}
+.service-banner__button--fill:hover { border-color: #4475ff;    background-color: #4475ff;    color: #fff;text-decoration: none;}
+.service-banner__button {    float: left;    box-sizing: border-box;    width: 140px;    height: 40px;    text-align: center;    font-size: 14px;    line-height: 38px;    border: 1px solid transparent;    border-radius: 2px;
+    transition: all 0.3s ease-out;
+}
+
+.solution-pain__icon--video {
+    background-image: url("{% static 'image/video.png' %}");
+    background-size: 100% auto;
+}
+.solution-pain__icon {
+    width: 78px;
+    height: 78px;
+    display: block;
+    margin: 94px auto 0;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+</style>
+</head>
+<body>
+
+    <div class="statbanner2 width50 font16" style="width: 100%;height: 60px; top:0; left: 0;z-index:1000; ">
+	<div id="" class="" style="width: 1300px;height:100%;margin: 0 auto; ">
+		<div class="center" style="padding-top:7px ;float: left; font-size: 23px; font-weight:300;height:60px; line-height: 36px;width: 160px;margin-left: 50px;font-family: Times New Roman,Microsoft YaHei;color: #f7671d ">
+			<a href="/image_caption_system" class="mrky" style=";word-break: break-all;text-decoration: none;">
+				<div id="sp_web_title2" style=" margin-left: 5px;">
+					<img src="{% static 'image/video.png' %}" height="45" alt="logo">
+				</div>
+			</a>
+		</div>
+		<div id="div_nav" class="center" style="width: 900px;margin: 0 auto;float: left;text-align:right ">
+	            <a href="/image_caption_system/" class="nav-btn">首页</a>
+	            <a href="/image_caption_system/process" class="nav-btn  nav-btn-current"  >篡改检测</a>
+	            <a href="/image_caption_system/history" class="nav-btn  ">检测历史</a>
+		</div>
+	</div>
+</div>
+
+
+    <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="btn-toolbar" role="toolbar">
+				<hr/>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" onclick="makePlay()">播放</button>
+					<button type="button" class="btn btn-default" onclick="makePause()">暂停</button>
+					<button type="button" class="btn btn-default" onclick="makeRePlay()">重新播放</button>
+
+<!-- 					    <button type="button" class="btn btn-default" onclick="makeBig()">放大</button> -->
+<!-- 					    <button type="button" class="btn btn-default" onclick="makeSmall()">缩小</button> -->
+<!-- 					    <button type="button" class="btn btn-default" onclick="makeNormal()">普通</button> -->
+				 </div>
+			</div>
+			<hr/>
+<!--			style="text-align: center"-->
+			<div>
+				<div style="float:left">
+					<h1>检测视频</h1>
+					<video id="origin_video" width="550" height="400" controls="controls" autoplay="autoplay">
+					  <source id = "video1" src="{{ video.video_path }}" type="video/mp4">
+					</video>
+				</div>
+				<div style="float:right">
+					<h1>检测结果</h1>
+					<video id="output_video" width="550" height="400" controls="controls" autoplay="autoplay">
+					  <source id = "video2" src="{{ video.new_video_path }}" type="video/mp4">
+					</video>
+                    <h3>篡改概率:  {{video.result}}%</h3>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+    <div class="clearfix"></div>
+
+	<div class="wave-box" style="margin-top: 50px;">
+		<div class="marquee-box marquee-up" id="marquee-box">
+			<div class="marquee">
+				<div class="wave-list-box" id="wave-list-box1">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_02.png' %}"></li>
+					</ul>
+				</div>
+				<div class="wave-list-box" id="wave-list-box2">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_02.png' %}"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="marquee-box" id="marquee-box3">
+			<div class="marquee">
+				<div class="wave-list-box" id="wave-list-box4">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_01.png' %}"></li>
+					</ul>
+				</div>
+				<div class="wave-list-box" id="wave-list-box5">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_01.png' %}"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer style="margin-top: 0; display: inline-block;width: 100%; ">
+        <div class="fcontainer">
+            <section class="copyright">
+                <span  style="margin:0 auto;">王子昂 版权所有 Copyright © 2019 wangziang All Rights Reserved. </span>
+            </section>
+        </div>
+    </footer>
+
+</body>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+<script src="{% static 'js/videojs-ie8.min.js' %}"></script>
+
+</html>

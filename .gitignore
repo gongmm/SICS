@@ -1,0 +1,9 @@
+data
+.python-version
+__pycache__
+pretrained_models
+.ipynb_checkpoints
+.idea
+*.png
+*.jpg
+*.sqlite3

@@ -1,0 +1,308 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<title>视频篡改检测系统</title>
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/video-js.css' %}" >
+<link rel="stylesheet" href="{% static 'css/jPages.css' %}" >
+
+
+<style type="text/css">
+footer { color: #fff; font-size: 14px;}
+footer .fcontainer { background-color: #009fd9;}
+footer .fcontainer:nth-child(2) { background-color: #009fd9;}
+.contact { width: 1200px; margin: 0 auto;  padding: 45px 0 55px 0;}
+.contact>h4 { font-size: 20px;  font-weight: initial;}
+.contact .content-container { margin-top: 50px; display: flex; justify-content: space-between; align-items: center;}
+.contact .content-container .content:nth-child(2) { padding: 0 85px; border-left: 1px solid #fff; border-right: 1px solid #fff;}
+.contact .content-container .content>div { display: flex; justify-content: space-between; align-items: center; color: #fff;}
+.contact .content-container .content>div>div { margin-left: 40px;}
+.contact .content-container .content>div>div>a { display: inline-block; margin-top: 6px; color: #fff;}
+.copyright {display: flex;justify-content: space-between;align-items: center;width: 1200px;margin: 0 auto;padding: 12px 0;color: #fff;}
+.copyright>div {display: flex;justify-content: space-between;align-items: center;}
+.copyright>div>span {margin-left: 8px;}
+
+
+#div_nav a.nav-btn{border: 0;background: 0;
+    padding: 0.3em 0.25em;	margin: 0.5em 1.1em 0.5em; color:#fff;
+	border-bottom: 2px solid transparent;	transition: border-color 1s;display: inline-block;text-decoration: none;height:40px;line-height: 40px; }
+#div_nav .nav-btn:focus {outline: none;}
+#div_nav a.nav-btn-current {color: #facb7a;	border-bottom:2px currentColor solid;}
+
+
+.wave-box *{padding:0}
+.marquee-box{overflow:hidden;width:100%;position:absolute;left:0;top:0}
+.marquee{width:8000%;height:60px}
+.wave-list-box{float:left}
+.wave-list-box ul{float:left;height:60px;overflow:hidden;zoom:1}
+.wave-list-box ul li{height:60px;width:100%;float:left;line-height:30px;list-style:none; }
+.wave-box{position:relative;height:60px;background:#fff}
+.wave1{position:absolute;overflow:hidden;width:100%;height:60px}
+.wave2{position:absolute;overflow:hidden;width:100%;height:60px}
+.marquee2{position:absolute;top:0;left:0;width:100%;height:60px;overflow:hidden}
+.wave-list{position:relative;width:100%;height:60px;top:0;overflow:hidden}
+.wave-list li{float:left}
+.banner_bolang_bg_1{display:inline-block;height:60px;background:url("{% static 'image/wave_01.png' %}") repeat-x;left:-236px;position:absolute;top:0;width:400%;z-index:999}
+.banner_bolang_bg_2{display:inline-block;height:60px;background:url("{% static 'image/wave_02.png' %}") repeat-x;left:-50px;position:absolute;top:0;width:400%;z-index:998}
+.marquee-up{top:-16px}
+
+
+div.statbanner2 {background-image: linear-gradient(to right, rgb(18, 120, 246), rgb(0, 180, 170));}
+div.statbanner2 span{float: left;padding: 0 20px;line-height: 40px; cursor: pointer; font-family: "Microsoft YaHei",微软雅黑,SimHei,黑体,sans-serif;color: #fff;margin-top: 10px;font-weight: bold;border-radius: 5px 5px 0 0;}
+div.statbanner2 span.over{color: #2188D3;font-weight: bold;background: #F4FCFF;}
+div.statbanner2 span:hover{color: #2188D3;background: #F4FCFF;}
+
+
+</style>
+
+</head>
+<body>
+
+    <div class="statbanner2 width50 font16" style="width: 100%;height: 60px; top:0; left: 0;z-index:1000; ">
+	<div id="" class="" style="width: 1300px;height:100%;margin: 0 auto; ">
+		<div class="center" style="padding-top:7px ;float: left; font-size: 23px; font-weight:300;height:60px; line-height: 36px;width: 160px;margin-left: 50px;font-family: Times New Roman,Microsoft YaHei;color: #f7671d ">
+			<a href="/image_caption_system" class="mrky" style=";word-break: break-all;text-decoration: none;">
+				<div id="sp_web_title2" style=" margin-left: 5px;">
+					<img src="{% static 'image/video.png' %}" height="45" alt="logo">
+				</div>
+			</a>
+		</div>
+		<div id="div_nav" class="center" style="width: 900px;margin: 0 auto;float: left;text-align:right ">
+	            <a href="/image_caption_system/" class="nav-btn">首页</a>
+	            <a href="/image_caption_system/process" class="nav-btn  "  >篡改检测</a>
+	            <a href="/image_caption_system/history" class="nav-btn  nav-btn-current">检测历史</a>
+		</div>
+	</div>
+</div>
+    <div class="clearfix"></div>
+    <div class="container" style="margin-top: 80px;">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+<!--            <div class="btn-toolbar" role="toolbar">-->
+<!--				<div class="btn-group">-->
+<!--					<button type="button" class="btn btn-default" onclick="makePlay()">播放</button>-->
+<!--					<button type="button" class="btn btn-default" onclick="makePause()">暂停</button>-->
+<!--					<button type="button" class="btn btn-default" onclick="makeRePlay()">重新播放</button>-->
+<!--				 </div>-->
+<!--			</div>-->
+            
+            <div style="display: none;"><div class="holder" style="margin:auto; width: 400px"></div></div>
+            <table  align="center" class="table table-striped" id="tb_videolist">
+                <caption style="text-align: center; font-weight: 900; font-size:20px">视频检测历史列表</caption>
+                <thead>
+                    <tr style="background:#EAEAEA">
+                    <th style="width:45px;text-align: center" >编号</th>
+                    <th style="width:400px;text-align: center">原视频</th>
+                    <th style="width:400px;text-align: center">检测结果</th>
+                    <th style="width:400px;text-align: center">篡改概率</th>
+                    <th style="width:80px;text-align: center">处理时间</th>
+                    <th style="width:50px;text-align: center">操作</th>
+                    </tr>
+                </thead>
+                <tbody id = "itemContainer">
+                {% for video in videos %}
+                <tr>
+                    <td style="text-align: center;display: table-cell; vertical-align: middle;" id={{video.video_id}}  >{{video.id}}</td>
+                    <td style="text-align: center">
+                        <div style="float:left;position: relative;display: block;cursor: pointer;" >
+                            <img id="{{video.video_id}}_cover_1" src="{{video.video_cover_path}}" width="400" height="200">
+                            <img id="{{video.video_id}}_icon_1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAByUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAEdwTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPn5+RYWFurq6gAAAMTExElJSdXV1dLS0ouLi2dnZ7i4uC0tLd/f3/Ly8oGBgf39/aSkpKOjo/////EJIz8AAAAldFJOU2ZDHFIJYBkATwYiAjtaSDItTGT3bONGvXvNyZiHtHLW7pL8pqanW7/gAAABX0lEQVRIx63X6XaDIBAF4IuCARW3tEmT7su8/yvWbmk0gODk/jR8xxwZYMDGGZO1QlsFKKtFmxn3KDieyU5jFt3JKFw0cKYpFnGh4Y0uglgKBCOkH5cKC1GlB1c1IlJXLmx6RKU3l1jmiEwu59hE21GbKa56JKSvJrhGUupzXCIx5T+WKhUrecI7JGf3hwusSPaL9Rqsf/CqFwPFN/asXxz2NyHcfGE5eH4lur0L4EGOuIMX0/Y1oLsR6wAmegx9MhgEMT0/eQcYZAuYXh68U412CdPbu2dAC7GIiY7uORPQEdgzZxo2BtP23jHAQkVhor1jXQaKYIrpmFT5M3y4LFDe32Z9MNZUsYokojw/vOXJWhisJcnaDHjbEGsDZG29vE2fddxsMs5BxzpieYc7q63gNTS8ViqhATxrAa/SPsY3rtpcu2XmNevMawLvgsK8GjEvZafrYG7VMCib+6+Dn4MPOIDxSe9FAAAAAElFTkSuQmCC" class="op-short-video-pc-play-icon" alt="" style="position:absolute;left: 50%;top: 50%; margin-top:-25px; margin-left:-25px; width:50px; height:50px; " onclick="playfirstvideo({{video.video_id}})"/>
+                            <video id="{{video.video_id}}_1" style="display:none" width="400" height="200" controls="controls" preload="none">
+                                <source src="{{video.video_path}}" type="video/mp4">
+                            </video>
+                        </div>
+                    </td>
+                    <td style="text-align: center">
+                        <div style="float:left;position: relative;display: block;cursor: pointer;" >
+                            <img id="{{video.video_id}}_cover_2" src="{{video.new_video_cover_path}}" width="400" height="200">
+                            <img id="{{video.video_id}}_icon_2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAByUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAEdwTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPn5+RYWFurq6gAAAMTExElJSdXV1dLS0ouLi2dnZ7i4uC0tLd/f3/Ly8oGBgf39/aSkpKOjo/////EJIz8AAAAldFJOU2ZDHFIJYBkATwYiAjtaSDItTGT3bONGvXvNyZiHtHLW7pL8pqanW7/gAAABX0lEQVRIx63X6XaDIBAF4IuCARW3tEmT7su8/yvWbmk0gODk/jR8xxwZYMDGGZO1QlsFKKtFmxn3KDieyU5jFt3JKFw0cKYpFnGh4Y0uglgKBCOkH5cKC1GlB1c1IlJXLmx6RKU3l1jmiEwu59hE21GbKa56JKSvJrhGUupzXCIx5T+WKhUrecI7JGf3hwusSPaL9Rqsf/CqFwPFN/asXxz2NyHcfGE5eH4lur0L4EGOuIMX0/Y1oLsR6wAmegx9MhgEMT0/eQcYZAuYXh68U412CdPbu2dAC7GIiY7uORPQEdgzZxo2BtP23jHAQkVhor1jXQaKYIrpmFT5M3y4LFDe32Z9MNZUsYokojw/vOXJWhisJcnaDHjbEGsDZG29vE2fddxsMs5BxzpieYc7q63gNTS8ViqhATxrAa/SPsY3rtpcu2XmNevMawLvgsK8GjEvZafrYG7VMCib+6+Dn4MPOIDxSe9FAAAAAElFTkSuQmCC" class="op-short-video-pc-play-icon" alt="" style="position:absolute;left: 50%;top: 50%; margin-top:-25px; margin-left:-25px; width:50px; height:50px; " onclick="playsecondvideo({{video.video_id}})"/>
+                            <video id="{{video.video_id}}_2" style="display:none" width="400" height="200" controls="controls" preload="none">
+                                <source src="{{video.new_video_path}}" type="video/mp4">
+                            </video>
+                        </div>
+                    </td>
+                    <td style="text-align: center;display: table-cell; vertical-align: middle; " name="result">{{video.result}}%</td>
+                    <td style="text-align: center;display: table-cell; vertical-align: middle; " name="timeStamp">{{video.time_stamp}}</td>
+                    <td style="text-align: center;display: table-cell; vertical-align: middle;  ">
+                        <input type="button" value="查看" onclick="checkvideo({{video.video_id}})" class="btn btn-success btn-xs btn-radius" style="margin-bottom:5px;"/>
+                        <input type="button" value="删除" onclick="deletevideo({{video.video_id}})" class="btn btn-danger btn-xs btn-radius" style="margin-bottom:5px;" />
+<!--                        <input type="button" value="播放" onclick="playvideo({{video.video_id}})" class="btn btn-success btn-xs btn-radius"  style="margin-bottom:5px;" />-->
+<!--                        <input type="button" value="暂停" onclick="pausevideo({{video.video_id}})" class="btn btn-success btn-xs btn-radius" />-->
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div><div class="holder" style="margin:auto; width: 400px"></div></div>
+        </div>
+    </div>
+ 
+</div>
+
+
+
+    <div class="clearfix"></div>
+
+	<div class="wave-box" style="margin-top: 50px;">
+		<div class="marquee-box marquee-up" id="marquee-box">
+			<div class="marquee">
+				<div class="wave-list-box" id="wave-list-box1">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_02.png' %}"></li>
+					</ul>
+				</div>
+				<div class="wave-list-box" id="wave-list-box2">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_02.png' %}"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="marquee-box" id="marquee-box3">
+			<div class="marquee">
+				<div class="wave-list-box" id="wave-list-box4">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_01.png' %}"></li>
+					</ul>
+				</div>
+				<div class="wave-list-box" id="wave-list-box5">
+					<ul>
+						<li><img height="60" alt="波浪" src="{% static 'image/wave_01.png' %}"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer style="margin-top: 0; display: inline-block;width: 100%; ">
+        <div class="fcontainer">
+            <section class="copyright">
+                <span  style="margin:0 auto;">王子昂 版权所有 Copyright © 2019 wangziang All Rights Reserved. </span>
+            </section>
+        </div>
+    </footer>
+
+</body>
+<!--<script src="{% static 'js/jquery.min.js' %}"></script>-->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+<script src="{% static 'js/videojs-ie8.min.js' %}"></script>
+<!-- App-->
+<!--<script type="text/javascript" src="static/js/main.js"></script>-->
+<script src="{% static 'js/jPages.min.js' %}"></script>
+
+<script type="text/javascript">
+    // $("video.lazyload").lazyload();
+
+    function checkvideo(video_id){
+        newurl = '/detection_system/'+video_id;
+        window.location.href = newurl
+    }
+    function deletevideo(video_id){
+        // newurl = '/videodetection/'+video_id+'/delete'
+        // alert("删除成功")
+        alert("真的删除?");
+        window.location.href = '/detection_system/'+video_id+'/delete'
+    }
+    function playfirstvideo(video_id){
+        video_id1 = video_id+'_cover_1';
+        video_id2 = video_id+'_icon_1';
+        video_id3 = video_id+'_1';
+        $('#'+video_id1).hide();
+        $('#'+video_id2).hide();
+        $('#'+video_id3).show();
+        var myVideo=document.getElementById(video_id3);
+        myVideo.play();
+
+    }
+
+    function playsecondvideo(video_id){
+        video_id1 = video_id+'_cover_2';
+        video_id2 = video_id+'_icon_2';
+        video_id3 = video_id+'_2';
+        $('#'+video_id1).hide();
+        $('#'+video_id2).hide();
+        $('#'+video_id3).show();
+        var myVideo=document.getElementById(video_id3);
+        myVideo.play();
+
+    }
+
+    function playvideo(video_id){
+        video_id1 = video_id+'_1';
+        video_id2 = video_id+'_2';
+        var myVideo1=document.getElementById(video_id1);
+        var myVideo2=document.getElementById(video_id2);
+        // alert(video_id1)
+        // alert(video_id2)
+        myVideo1.play();
+        myVideo2.play();
+    }
+    function pausevideo(video_id){
+        video_id1 = video_id+'_1';
+        video_id2 = video_id+'_2';
+        var myVideo1=document.getElementById(video_id1);
+        var myVideo2=document.getElementById(video_id2);
+        // alert(video_id1)
+        // alert(video_id2)
+        myVideo1.pause();
+        myVideo2.pause();
+    }
+    function makePlay(){
+        myVideo1.play();
+        myVideo2.play();
+    }
+    function makeRePlay(){
+        myVideo1.load();
+        myVideo2.load();
+    }
+    function makeBig(){
+        myVideo1.width=560;
+    }
+    function makeSmall(){
+        myVideo1.width=320;
+    }
+    function makeNormal(){
+        myVideo1.width=420;
+    }
+
+    $(function(){
+        $("div.holder").jPages({
+          containerID : "itemContainer",
+          first: " 首页 ",
+          last: " 尾页 ",
+          previous : " 上页 ",
+          next : " 下页 ",
+          perPage : 5,
+          delay : 10
+        });
+    });
+    
+    $(function () {
+    	var marqueeScroll = function (id1, id2, id3, timer) {
+    		var $parent = $("#" + id1);
+    		var $goal = $("#" + id2);
+    		var $closegoal = $("#" + id3);
+    		$closegoal.html($goal.html());
+    		function Marquee() {
+    			if (parseInt($parent.scrollLeft()) - $closegoal.width() >= 0) {
+    				$parent.scrollLeft(parseInt($parent.scrollLeft()) - $goal.width());
+    			}
+    			else {
+    				$parent.scrollLeft($parent.scrollLeft() + 1);
+    			}
+    		}
+
+    		setInterval(Marquee, timer);
+    	};
+    	var marqueeScroll1 = new marqueeScroll("marquee-box", "wave-list-box1", "wave-list-box2", 20);
+    	var marqueeScroll2 = new marqueeScroll("marquee-box3", "wave-list-box4", "wave-list-box5", 40);
+    });
+
+</script>
+</html>
