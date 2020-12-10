@@ -1,4 +1,3 @@
-from image_caption_system.utils.video_face_extractor import BlazeFacesExtractorVideo
 import cv2
 from PIL import Image
 import torchvision.transforms as transforms

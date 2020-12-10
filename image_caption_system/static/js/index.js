@@ -19,11 +19,11 @@ function UploadFile(method){
     var fileobj = $("#videofile")[0].files[0];
     var form = new FormData();
     form.append('method',method);
-    form.append('video',fileobj);
+    form.append('image',fileobj);
     $("#shadowid").show();
     $.ajax({
         type:'POST',
-        url:'/detection_system/upload',
+        url:'/image_caption_system/upload',
         dataType:"json",
         data:form,
         //data: {method:"upvideo",fileobj:fileobj},
@@ -34,19 +34,19 @@ function UploadFile(method){
         	$("#shadowid").hide();
         	var list = eval(result);
 
-        	var video_id = list[0];
-        	if(video_id==='fail'){
+        	var image_id = list[0];
+        	if(image_id==='fail'){
         		alert("请勿提交空文件");
 				location.reload();
         		return
 			}
-        	if(video_id==='processfail'){
+        	if(image_id==='processfail'){
         		alert("处理失败");
 				location.reload();
         		return
 			}
-        	// alert(video_id);
-        	newurl = '/image_caption_system/'+video_id;
+        	// alert(image_id);
+        	newurl = '/image_caption_system/'+image_id;
 			// alert(newurl)
 			// 拿到新的id，去新的界面渲染。
         	window.location.href = newurl

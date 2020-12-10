@@ -200,14 +200,14 @@ div.statbanner2 span:hover{color: #2188D3;background: #F4FCFF;}
     // $("video.lazyload").lazyload();
 
     function checkvideo(video_id){
-        newurl = '/detection_system/'+video_id;
+        newurl = '/image_caption_system/'+video_id;
         window.location.href = newurl
     }
     function deletevideo(video_id){
-        // newurl = '/videodetection/'+video_id+'/delete'
+        // newurl = '/image_caption_system/'+video_id+'/delete'
         // alert("删除成功")
         alert("真的删除?");
-        window.location.href = '/detection_system/'+video_id+'/delete'
+        window.location.href = '/image_caption_system/'+video_id+'/delete'
     }
     function playfirstvideo(video_id){
         video_id1 = video_id+'_cover_1';

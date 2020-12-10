@@ -23,7 +23,7 @@ function UploadFile(method){
     $("#shadowid").show();
     $.ajax({
         type:'POST',
-        url:'/detection_system/upload',
+        url:'/image_caption_system/upload',
         dataType:"json",
         data:form,
         //data: {method:"upvideo",fileobj:fileobj},
