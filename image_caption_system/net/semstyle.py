@@ -8,10 +8,10 @@ from torch.utils.data import Dataset, DataLoader
 from .text_processing import untokenize
 from . import seq2seq_pytorch as s2s
 
-cuda = True
+cuda = False
 device = 0
 
-model_path = "./models/"
+model_path = "/Users/wangyawen/PycharmProjects/SICS/image_caption_system/net/models/"
 test_model_fname = "img_to_txt_state.tar"
 
 BATCH_SIZE = 128
@@ -26,7 +26,8 @@ class NopModule(torch.nn.Module):
 
 
 def get_cnn():
-    inception = models.inception_v3(aux_logits=False)
+    # inception = models.inception_v3(pretrained=True, aux_logits=False)
+    inception = models.inception_v3(pretrained=True)
     inception.fc = NopModule()
     if cuda:
         inception = inception.to(device=device)
@@ -72,8 +73,9 @@ def safe_pil_loader(path, from_memory=False):
             with open(path, 'rb') as f:
                 img = Image.open(f)
                 res = img.convert('RGB')
-    except:
+    except Exception as e:
         res = Image.new('RGB', (299, 299), color=0)
+        print(e)
     return res
 
 

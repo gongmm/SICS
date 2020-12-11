@@ -46,7 +46,7 @@ def upload(request):
 
     # 先将上传的图片保存到本地
     origin_write_path = os.path.join(base_path, "static/images", upload_image.name)
-    image_path = os.path.join("static/images", upload_image.name)
+    image_path = os.path.join(base_path, "static/images", upload_image.name)
 
     if not os.path.exists(origin_write_path):
         # 存数据库的只是相对路径
@@ -91,7 +91,10 @@ def detail(request, image_id):
     :return:
     """
     image = StyleImageCaption.objects.get(image_id=image_id)
-    return render(request, 'detail.html', {'image': image})
+    print(image)
+    print(image.image_path)
+    print(image.caption)
+    return render(request, 'details.html', {'image': image})
 
 
 def history(request):

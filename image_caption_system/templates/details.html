@@ -11,7 +11,7 @@
     <title>Squadfree - Free bootstrap 3 one page template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
 
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Tangerine:400,700" rel="stylesheet">
 
@@ -22,12 +22,11 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
     <!-- Fonts -->
-    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../static/css/animate.css" rel="stylesheet"/>
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet"/>
     <!-- Squad theme CSS -->
-    <link href="../static/css/style.css" rel="stylesheet">
-    <link href="../static/color/default.css" rel="stylesheet">
-
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'color/default.css' %}" rel="stylesheet">
 
 
 </head>
@@ -80,11 +79,11 @@
 
     <section class="slidertest">
         <div id="customers-testimonials" class="owl-carousel">
-<!--            欢迎页-->
+            <!--            欢迎页-->
             <div class="item">
                 <div class="shadow-effect">
                     <img class="pull-right"
-                         src="../static/img/background1.jpg" alt="" height="932" width="1792">
+                         src="{% static 'img/background1.jpg' %}" alt="" height="932" width="1792">
                     <div class="slider-caption slider-caption2">
                         <div class="top-caption">
                             <h2>welcome to</h2>
@@ -101,18 +100,19 @@
                             </a>
                         </div>
                     </div>
-<!--                    <div class="TryBtn">-->
-<!--                        <button type="submit" class="btn btn-skin pull-right" id="btnToService">-->
-<!--                            Try By Yourself-->
-<!--                        </button>-->
-<!--                    </div>-->
+                    <!--                    <div class="TryBtn">-->
+                    <!--                        <button type="submit" class="btn btn-skin pull-right" id="btnToService">-->
+                    <!--                            Try By Yourself-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
                 </div>
             </div>
 
             <div class="item">
                 <div class="shadow-effect">
                     <img class="pull-right"
-                         src="https://picjumbo.com/wp-content/uploads/calm-lion-looking-into-camera-1080x572.jpg" alt="" height="932" width="1792">
+                         src="https://picjumbo.com/wp-content/uploads/calm-lion-looking-into-camera-1080x572.jpg" alt=""
+                         height="932" width="1792">
                     <div class="slider-caption">
                         <div class="middle-caption1">
                             <h2>Normal</h2>
@@ -129,16 +129,16 @@
                         <div class="middle-caption1">
                             <h2>Humor</h2>
                         </div>
-                            <div class="page-scroll">
-                                <a href="#contact" class="btn btn-circle">
-                                    <i class="fa fa-angle-double-down animated"></i>
-                                </a>
-                            </div>
+                        <div class="page-scroll">
+                            <a href="#contact" class="btn btn-circle">
+                                <i class="fa fa-angle-double-down animated"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-<!--            3-->
+            <!--            3-->
             <div class="item">
                 <div class="shadow-effect">
                     <img class="pull-right"
@@ -159,15 +159,15 @@
         </div>
     </section>
 
-<!--    <div class="slogan">-->
-<!--        <h2>WELCOME TO <span class="text_color">SQUAD</span></h2>-->
-<!--        <h4>WE ARE GROUP OF GENTLEMEN MAKING AWESOME WEB WITH BOOTSTRAP</h4>-->
-<!--    </div>-->
-<!--    <div class="page-scroll">-->
-<!--        <a href="#service" class="btn btn-circle">-->
-<!--            <i class="fa fa-angle-double-down animated"></i>-->
-<!--        </a>-->
-<!--    </div>-->
+    <!--    <div class="slogan">-->
+    <!--        <h2>WELCOME TO <span class="text_color">SQUAD</span></h2>-->
+    <!--        <h4>WE ARE GROUP OF GENTLEMEN MAKING AWESOME WEB WITH BOOTSTRAP</h4>-->
+    <!--    </div>-->
+    <!--    <div class="page-scroll">-->
+    <!--        <a href="#service" class="btn btn-circle">-->
+    <!--            <i class="fa fa-angle-double-down animated"></i>-->
+    <!--        </a>-->
+    <!--    </div>-->
 </section>
 <!-- /Section: intro -->
 
@@ -204,15 +204,23 @@
 
                             <div class="col-md-6 upload-img">
                                 <div class="form-group">
-                                    <img id="myimg" src="../static/img/default_upload.png" width="150" height="150"/>
-                                </div>
+{#                                    <img id="myimg" width="150" height="150">#}
+                                    <img width="150" height="150">
+                                        <source id="myimg" src="{{ image.image_path }}"
+                                            type="image/png,image/jpg,image/jpeg">
+                                    </img>
+
+                            </div>
 
                                 <div>
-                                    <input type="button" id="btn_file" class="btn btn-success" value="选择图片" onclick="openFiledirFN();" style="margin-right: 200px;"/>
-                                    <input type="file" name="file" accept="image/png,image/jpg,image/jpeg" id="file" onchange="changeToop();" style="display:none;" />
+                                    <input type="button" id="btn_file" class="btn btn-success" value="选择图片"
+                                           onclick="openFiledirFN();" style="margin-right: 200px;"/>
+                                    <input type="file" name="file" accept="image/png,image/jpg,image/jpeg" id="file"
+                                           onchange="changeToop();" style="display:none;"/>
                                     {% csrf_token %}
-                                    <button type="button" class="btn btn-skin pull-right btnsize" onclick="UploadFile(1);" id="Upload">
-                                    Upload
+                                    <button type="button" class="btn btn-skin pull-right btnsize"
+                                            onclick="UploadFile(1);" id="Upload">
+                                        Upload
                                     </button>
                                 </div>
 
@@ -220,14 +228,14 @@
 
                             <div class="col-md-1">
                                 <div class="romancebtn">
-                                <button type="submit" class="btn btn-skin pull-right btnsize" id="romance">
-                                    Romance
-                                </button>
+                                    <button type="submit" class="btn btn-skin pull-right btnsize" id="romance">
+                                        Romance
+                                    </button>
                                 </div>
                                 <div class="humorbtn">
-                                <button type="submit" class="btn btn-skin pull-right btnsize" id="humorous">
-                                    Humorous
-                                </button>
+                                    <button type="submit" class="btn btn-skin pull-right btnsize" id="humorous">
+                                        Humorous
+                                    </button>
                                 </div>
                             </div>
 
@@ -235,17 +243,17 @@
                                 <div class="form-group">
                                     <a for="name">
                                         Text Generation Result</a>
-                                    <textarea name="message" id="message" class="form-control" rows="9" cols="25"
-                                              placeholder="Text Generation Result">
-                                        caption
+                                    <textarea name="message" id="message" class="form-control" rows="9" cols="25">
+{#                                              placeholder="{{ image.caption }}">#}
+                                        {{ image.caption }}
                                     </textarea>
                                 </div>
                             </div>
-<!--                            <div class="col-md-12">-->
-<!--                                <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">-->
-<!--                                    Send Message-->
-<!--                                </button>-->
-<!--                            </div>-->
+                            <!--                            <div class="col-md-12">-->
+                            <!--                                <button type="submit" class="btn btn-skin pull-right" id="btnContactUs">-->
+                            <!--                                    Send Message-->
+                            <!--                                </button>-->
+                            <!--                            </div>-->
                         </div>
                     </form>
                 </div>
@@ -285,7 +293,7 @@
                 <div class="wow fadeInLeft" data-wow-delay="0.2s">
                     <div class="service-box">
                         <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-1.png" alt=""/>
+                            <img src="{% static 'img/icons/service-icon-1.png' %}" alt=""/>
                         </div>
                         <div class="service-desc">
                             <h5>Print</h5>
@@ -299,7 +307,7 @@
                 <div class="wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-box">
                         <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-2.png" alt=""/>
+                            <img src="{% static 'img/icons/service-icon-2.png' %}" alt=""/>
                         </div>
                         <div class="service-desc">
                             <h5>Web Design</h5>
@@ -313,7 +321,7 @@
                 <div class="wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-box">
                         <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-3.png" alt=""/>
+                            <img src="{% static 'img/icons/service-icon-3.png' %}" alt=""/>
                         </div>
                         <div class="service-desc">
                             <h5>Photography</h5>
@@ -327,7 +335,7 @@
                 <div class="wow fadeInRight" data-wow-delay="0.2s">
                     <div class="service-box">
                         <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-4.png" alt=""/>
+                            <img src="{% static 'img/icons/service-icon-4.png' %}" alt=""/>
                         </div>
                         <div class="service-desc">
                             <h5>Cloud System</h5>
@@ -353,7 +361,7 @@
                         </a>
                     </div>
                 </div>
-                <p>&copy;Copyright 2020 -  All rights reserved.</p>
+                <p>&copy;Copyright 2020 - All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -361,53 +369,78 @@
 
 <!-- Core JavaScript Files -->
 <script src="{% static 'js/jquery.js' %}"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<script src="../static/js/jquery.easing.min.js"></script>
-<script src="../static/js/jquery.scrollTo.js"></script>
-<script src="../static/js/wow.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'js/jquery.scrollTo.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
 <!-- Custom Theme JavaScript -->
-<script src="../static/js/custom.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/owl.carousel.min.js'></script>
-<script src="../static/js/script.js"></script>
+<script src="{% static '/js/script.js' %}"></script>
 
 <script type="text/javascript">
-    function Id(id){
+    function Id(id) {
         return document.getElementById(id);
     }
-    function changeToop(){
+
+    function changeToop() {
         var file = Id("file");
-        if(file.value==''){
+        if (file.value == '') {
             //设置默认图片
-            Id("myimg").src='../static/img/bg1.jpg';
-        }else{
-            preImg("file","myimg");
+            Id("myimg").src = '{% static 'img/bg1.jpg' %}';
+        } else {
+            preImg("file", "myimg");
         }
     }
+
     //获取input[file]图片的url Important
     function getFileUrl(fileId) {
         var url;
         var file = Id(fileId).files[0];
         var agent = navigator.userAgent;
-        if (agent.indexOf("MSIE")>=1) {
+        if (agent.indexOf("MSIE") >= 1) {
             url = file.value;
-        } else if(agent.indexOf("Firefox")>0) {
+        } else if (agent.indexOf("Firefox") > 0) {
             url = window.URL.createObjectURL(file.files.item(0));
-        } else if(agent.indexOf("Chrome")>0) {
+        } else if (agent.indexOf("Chrome") > 0) {
             url = window.URL.createObjectURL(file.files.item(0));
         }
         return url;
     }
+
     //读取图片后预览
-    function preImg(fileId,imgId) {
-        var imgPre =Id(fileId).files[0];
+    function preImg(fileId, imgId) {
+        var imgPre = Id(fileId).files[0];
         {#var url=getFileUrl(fileId);#}
         var url = URL.createObjectURL(imgPre);
         console.log(url);
-	    Id(imgId).src=url;
+        Id(imgId).src = url;
     }
-    function openFiledirFN(){
+
+    function openFiledirFN() {
         Id('file').click();
+    }
+
+    function videoPreviewFN(o) {
+        $('#a_vpost_1').removeAttr('disabled');
+        $('#a_vpost_2').removeAttr('disabled');
+    }
+
+    function onInputFileChange() {
+        // alert("hello");
+        var file = document.getElementById('myimg').files[0];
+        var url = URL.createObjectURL(file);
+        // alert(url);
+
+        $('#myimgid').attr('src', url);
+        $('#myimgid').load();
+        // document.getElementById("video").load();
+        // alert("why?")
+        // document.getElementById("video").src = url;
+        // $('#video').load();
+
+
     }
 </script>
 </body>

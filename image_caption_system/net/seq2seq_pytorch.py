@@ -23,7 +23,8 @@ from .text_processing import tokenize_text, untokenize, pad_text, Toks
 cuda = True
 device = 0
 
-model_path = "./models/"
+# model_path = "./models/"
+model_path = "/Users/wangyawen/PycharmProjects/SICS/image_caption_system/net/models/"
 seq_to_seq_test_model_fname = "seq_to_txt_state.tar"
 epoch_to_save_path = lambda epoch: model_path + "seq_to_txt_state_%d.tar" % int(epoch)
 
