@@ -9,6 +9,7 @@ import json
 from django.views import generic
 import pytz
 from datetime import datetime
+from .net.semstyle import setup_test, test
 import os
 
 
@@ -55,12 +56,10 @@ def upload(request):
         for chunk in upload_image.chunks():
             destination.write(chunk)
         destination.close()
-
-    vocab_path = os.path.join(base_path, "models/xception_focal.pth.tar")
-    encoder_model_path = os.path.join(base_path, "models/xception_focal.pth.tar")
-    decoder_model_path = os.path.join(base_path, "models/xception_focal.pth.tar")
-
-    style_image_caption = get_style_image_caption(image_path, vocab_path, encoder_model_path, decoder_model_path)
+    print("setup test")
+    r = setup_test()
+    style_image_caption = test(r, test_images=[image_path])
+    print(image_path + " result: " + str(style_image_caption))
     if style_image_caption is None:
         print("处理失败")
         result = ['processfail']
@@ -72,7 +71,7 @@ def upload(request):
     timestamp = t.strftime('%Y-%m-%d %H:%M:%S')
     image_id = t.strftime('%Y%m%d%H%M%S')
 
-    style_image_caption = StyleImageCaption(video_id=image_id)
+    style_image_caption = StyleImageCaption(image_id=image_id)
     style_image_caption.image_path = image_path
     style_image_caption.time_stamp = timestamp
     style_image_caption.caption = style_image_caption
@@ -84,14 +83,14 @@ def upload(request):
     return JsonResponse(json.dumps(result), content_type='application/json', safe=False)
 
 
-def detail(request, video_id):
+def detail(request, image_id):
     """
     显示图片详情
     :param request:
     :param video_id:
     :return:
     """
-    image = StyleImageCaption.objects.get(video_id=video_id)
+    image = StyleImageCaption.objects.get(image_id=image_id)
     return render(request, 'detail.html', {'image': image})
 
 
