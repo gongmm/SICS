@@ -58,9 +58,9 @@ def upload(request):
         destination.close()
     print("setup test")
     r = setup_test()
-    style_image_caption = test(r, test_images=[image_path])
-    print(image_path + " result: " + str(style_image_caption))
-    if style_image_caption is None:
+    style_image_caption_result = test(r, test_images=[image_path])
+    print(image_path + " result: " + str(style_image_caption_result))
+    if style_image_caption_result is None:
         print("处理失败")
         result = ['processfail']
         return JsonResponse(json.dumps(result), content_type='application/json', safe=False)
@@ -74,7 +74,9 @@ def upload(request):
     style_image_caption = StyleImageCaption(image_id=image_id)
     style_image_caption.image_path = image_path
     style_image_caption.time_stamp = timestamp
-    style_image_caption.caption = style_image_caption
+
+    style_image_caption.caption = style_image_caption_result[0]
+
 
     style_image_caption.save()
 

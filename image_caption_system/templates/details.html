@@ -204,13 +204,15 @@
 
                             <div class="col-md-6 upload-img">
                                 <div class="form-group">
-{#                                    <img id="myimg" width="150" height="150">#}
-                                    <img width="150" height="150">
-                                        <source id="myimg" src="{{ image.image_path }}"
-                                            type="image/png,image/jpg,image/jpeg">
+                                    {#                                    <img id="myimg" width="150" height="150">#}
+                                    <img id="myimg" src="" width="150" height="150">
+                                        <input id="myimgid" datasrc="{{ image.image_path }}"  type="image/png,image/jpg,image/jpeg" style="display:none;">
                                     </img>
 
-                            </div>
+                                    {#                                        <source id="myimg" src="{{ image.image_path }}"#}
+                                    {#                                            type="image/png,image/jpg,image/jpeg">#}
+
+                                </div>
 
                                 <div>
                                     <input type="button" id="btn_file" class="btn btn-success" value="选择图片"
@@ -243,9 +245,9 @@
                                 <div class="form-group">
                                     <a for="name">
                                         Text Generation Result</a>
-                                    <textarea name="message" id="message" class="form-control" rows="9" cols="25">
+                                    <textarea name="message" id="message" class="form-control" rows="5px" cols="25" style="font-size: 28px ; color: black;font-family: 'Tangerine', cursive;text-align: center; resize:none ">
 {#                                              placeholder="{{ image.caption }}">#}
-                                        {{ image.caption }}
+                                      {{ image.caption }}
                                     </textarea>
                                 </div>
                             </div>
@@ -380,6 +382,13 @@
 <script src="{% static '/js/script.js' %}"></script>
 
 <script type="text/javascript">
+    {#var pictureUrl = "{{ image.image_path }}";#}
+    var picPre = Id("myimgid").files[0];
+    var pictureUrl=URL.createObjectURL(picPre)
+    Id("myimg").src = pictureUrl;
+    //后台传入的图片路径，url指的是数据库中图片的路径
+
+
     function Id(id) {
         return document.getElementById(id);
     }
