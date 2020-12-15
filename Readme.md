@@ -17,7 +17,7 @@ python3 manage.py migrate
 
 - 运行
 ```python
-python3 manage.py runserver
+python3 manage.py runserver 8000
 ```
 - 系统启动后，访问网页：
 http://127.0.0.1:8000/image_caption_system/
