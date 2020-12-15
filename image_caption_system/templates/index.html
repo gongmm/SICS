@@ -44,7 +44,7 @@
         <div class="navbar-header page-scroll">
             <a class="navbar-brand" href="index2.html">
                 <!-- 名称 -->
-                <h1>STYLE GENERATION</h1>
+                <h1>风格文案生成系统</h1>
             </a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                 <i class="fa fa-bars"></i>
@@ -56,9 +56,9 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#intro">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#service">Service</a></li>
-                <li><a href="#contact">Contact</a></li>
+{#                <li><a href="#about">About</a></li>#}
+                <li><a href="#contact">Have a try!</a></li>
+{#                <li><a href="#contact">Contact</a></li>#}
                 <!--		  下拉菜单-->
                 <!--        <li class="dropdown">-->
                 <!--          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>-->
@@ -112,28 +112,29 @@
             <div class="item">
                 <div class="shadow-effect">
                     <img class="pull-right"
-                         src="https://picjumbo.com/wp-content/uploads/calm-lion-looking-into-camera-1080x572.jpg" alt="" height="932" width="1792">
+                         src="{% static '/img/bg2.jpeg' %}" alt="" height="932" width="1792">
                     <div class="slider-caption">
-                        <div class="middle-caption1">
-                            <h2>Normal</h2>
-                        </div>
-                        <div class="top-caption1">
-                            <h2>A calm lion looking into the camera. </h2>
-                        </div>
+{#                        <div class="middle-caption1">#}
+{#                            <h2>Normal</h2>#}
+{#                        </div>#}
+{#                        <div class="top-caption1">#}
+{#                            <h2>A calm lion looking into the camera. </h2>#}
+{#                        </div>#}
                         <div class="middle-caption1">
                             <h2>Romatic</h2>
                         </div>
                         <div class="bottom-caption1">
-                            <h2>A calm lion looking into the camera.</h2>
+                            <h2>I was a little of the vines,
+                                and i 'd never seen the flowers in the garden .</h2>
                         </div>
-                        <div class="middle-caption1">
-                            <h2>Humor</h2>
-                        </div>
-                            <div class="page-scroll">
-                                <a href="#contact" class="btn btn-circle">
-                                    <i class="fa fa-angle-double-down animated"></i>
-                                </a>
-                            </div>
+{#                        <div class="middle-caption1">#}
+{#                            <h2>Humor</h2>#}
+{#                        </div>#}
+{#                            <div class="page-scroll">#}
+{#                                <a href="#contact" class="btn btn-circle">#}
+{#                                    <i class="fa fa-angle-double-down animated"></i>#}
+{#                                </a>#}
+{#                            </div>#}
                     </div>
                 </div>
             </div>
@@ -142,17 +143,15 @@
             <div class="item">
                 <div class="shadow-effect">
                     <img class="pull-right"
-                         src="https://radiustheme.com/demo/html/redchili/redchili/img/slider/slide1-2.jpg" alt="">
+                         src="{% static '/img/bg3.jpeg' %}" alt="">
                     <div class="slider-caption slider-caption2">
-                        <div class="top-caption">
-                            <h2>welcome to</h2>
+                         <div class="middle-caption1">
+                            <h2>Romatic</h2>
                         </div>
-                        <div class="middle-caption">
-                            <h2>Eatingdive</h2>
+                        <div class="bottom-caption1">
+                            <h2>Birds flying over the water.</h2>
                         </div>
-                        <div class="bottom-caption">
-                            <h2>restaurent</h2>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -204,7 +203,7 @@
 
                             <div class="col-md-6 upload-img">
                                 <div class="form-group">
-                                    <img id="myimg" src="../static/img/default_upload.png" width="150" height="150"/>
+                                    <img id="myimg" src="../static/img/default_upload.png" width="250" height="250"/>
                                 </div>
 
                                 <div>
@@ -219,25 +218,24 @@
                             </div>
 
                             <div class="col-md-1">
-                                <div class="romancebtn">
-                                <button type="submit" class="btn btn-skin pull-right btnsize" id="romance">
-                                    Romance
-                                </button>
-                                </div>
-                                <div class="humorbtn">
-                                <button type="submit" class="btn btn-skin pull-right btnsize" id="humorous">
-                                    Humorous
-                                </button>
-                                </div>
+{#                                <div class="romancebtn">#}
+{#                                <button type="submit" class="btn btn-skin pull-right btnsize" id="romance">#}
+{#                                    Romance#}
+{#                                </button>#}
+{#                                </div>#}
+{#                                <div class="humorbtn">#}
+{#                                <button type="submit" class="btn btn-skin pull-right btnsize" id="humorous">#}
+{#                                    Humorous#}
+{#                                </button>#}
+{#                                </div>#}
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <a for="name">
+                                    <a for="name" style="font-size: 32px;color: black">
                                         Text Generation Result</a>
-                                    <textarea name="message" id="message" class="form-control" rows="9" cols="25"
-                                              placeholder="Text Generation Result">
-                                        caption
+                                    <textarea name="message" id="caption-res" class="form-control" rows="3" cols="3"
+                                              placeholder="Text Generation Result" style="font-size: 36px ; color: black;font-family: 'Lora', serif;text-align: center" readonly="readonly" >
                                     </textarea>
                                 </div>
                             </div>
@@ -257,89 +255,89 @@
 </section>
 
 <!-- Section: services -->
-<section id="service" class="home-section text-center bg-gray">
-
-    <div class="heading-about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="wow bounceInDown" data-wow-delay="0.4s">
-                        <div class="section-heading">
-                            <h2>Our Services</h2>
-                            <i class="fa fa-2x fa-angle-down"></i>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-lg-offset-5">
-                <hr class="marginbot-50">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3 col-md-3">
-                <div class="wow fadeInLeft" data-wow-delay="0.2s">
-                    <div class="service-box">
-                        <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-1.png" alt=""/>
-                        </div>
-                        <div class="service-desc">
-                            <h5>Print</h5>
-                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram
-                                accommodare.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-md-3">
-                <div class="wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="service-box">
-                        <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-2.png" alt=""/>
-                        </div>
-                        <div class="service-desc">
-                            <h5>Web Design</h5>
-                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram
-                                accommodare.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-md-3">
-                <div class="wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="service-box">
-                        <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-3.png" alt=""/>
-                        </div>
-                        <div class="service-desc">
-                            <h5>Photography</h5>
-                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram
-                                accommodare.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-md-3">
-                <div class="wow fadeInRight" data-wow-delay="0.2s">
-                    <div class="service-box">
-                        <div class="service-icon">
-                            <img src="../static/img/icons/service-icon-4.png" alt=""/>
-                        </div>
-                        <div class="service-desc">
-                            <h5>Cloud System</h5>
-                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram
-                                accommodare.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{#<section id="service" class="home-section text-center bg-gray">#}
+{##}
+{#    <div class="heading-about">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-8 col-lg-offset-2">#}
+{#                    <div class="wow bounceInDown" data-wow-delay="0.4s">#}
+{#                        <div class="section-heading">#}
+{#                            <h2>Our Services</h2>#}
+{#                            <i class="fa fa-2x fa-angle-down"></i>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-lg-2 col-lg-offset-5">#}
+{#                <hr class="marginbot-50">#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row">#}
+{#            <div class="col-sm-3 col-md-3">#}
+{#                <div class="wow fadeInLeft" data-wow-delay="0.2s">#}
+{#                    <div class="service-box">#}
+{#                        <div class="service-icon">#}
+{#                            <img src="../static/img/icons/service-icon-1.png" alt=""/>#}
+{#                        </div>#}
+{#                        <div class="service-desc">#}
+{#                            <h5>Print</h5>#}
+{#                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram#}
+{#                                accommodare.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-sm-3 col-md-3">#}
+{#                <div class="wow fadeInUp" data-wow-delay="0.2s">#}
+{#                    <div class="service-box">#}
+{#                        <div class="service-icon">#}
+{#                            <img src="../static/img/icons/service-icon-2.png" alt=""/>#}
+{#                        </div>#}
+{#                        <div class="service-desc">#}
+{#                            <h5>Web Design</h5>#}
+{#                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram#}
+{#                                accommodare.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-sm-3 col-md-3">#}
+{#                <div class="wow fadeInUp" data-wow-delay="0.2s">#}
+{#                    <div class="service-box">#}
+{#                        <div class="service-icon">#}
+{#                            <img src="../static/img/icons/service-icon-3.png" alt=""/>#}
+{#                        </div>#}
+{#                        <div class="service-desc">#}
+{#                            <h5>Photography</h5>#}
+{#                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram#}
+{#                                accommodare.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-sm-3 col-md-3">#}
+{#                <div class="wow fadeInRight" data-wow-delay="0.2s">#}
+{#                    <div class="service-box">#}
+{#                        <div class="service-icon">#}
+{#                            <img src="../static/img/icons/service-icon-4.png" alt=""/>#}
+{#                        </div>#}
+{#                        <div class="service-desc">#}
+{#                            <h5>Cloud System</h5>#}
+{#                            <p>Vestibulum tincidunt enim in pharetra malesuada. Duis semper magna metus electram#}
+{#                                accommodare.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
 <!-- /Section: services -->
 
 <footer>

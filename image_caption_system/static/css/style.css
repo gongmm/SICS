@@ -992,7 +992,7 @@ Parallax
 
 .slider-caption .bottom-caption1 h2 {
     margin-top: -30px;
-    font-size: 30px;
+    font-size: 50px;
     color: white;
     font-family: 'Lora', serif;
 }
@@ -1020,7 +1020,7 @@ Parallax
 .slider-caption .middle-caption1 h2 {
     font-family: 'Tangerine', cursive;
     font-weight: 400;
-    font-size: 50px;
+    font-size: 70px;
     line-height: 90px;
     color: red;
     text-transform: capitalize;

@@ -60,6 +60,7 @@ function UploadFile(method){
         success:function (result) {
             // alert("评测成功！");
             $("#shadowid").hide();
+            console.log(result)
             var list = eval(result);
 
             var video_id = list[0];
@@ -74,11 +75,16 @@ function UploadFile(method){
                 location.reload();
                 return
             }
+            var showcap=document.getElementById("caption-res");
+            console.log(showcap);
+            document.getElementById("caption-res").value=result.caption;
+            console.log(result.caption);
+
             // alert(video_id);
-            newurl = '/image_caption_system/'+video_id;
+            // newurl = '/image_caption_system/'+video_id;
             // alert(newurl)
             // 拿到新的id，去新的界面渲染。
-            window.location.href = newurl
+            // window.location.href = newurl
         }
 
     }

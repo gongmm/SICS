@@ -77,12 +77,12 @@ def upload(request):
 
     style_image_caption.caption = style_image_caption_result[0]
 
-
     style_image_caption.save()
 
-    result = [image_id]
-    # print(result)
-    return JsonResponse(json.dumps(result), content_type='application/json', safe=False)
+    result = style_image_caption
+    print(result)
+    return JsonResponse({'image_path': image_path, 'caption': style_image_caption_result[0]},
+                        content_type='application/json', safe=False)
 
 
 def detail(request, image_id):

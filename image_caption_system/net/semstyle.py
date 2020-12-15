@@ -11,8 +11,9 @@ from . import seq2seq_pytorch as s2s
 cuda = False
 device = 0
 
-model_path = "/Users/wangyawen/PycharmProjects/SICS/image_caption_system/net/models/"
-test_model_fname = "img_to_txt_state.tar"
+base_path = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_path, "models")
+test_model_fname = "/img_to_factual.tar"
 
 BATCH_SIZE = 128
 

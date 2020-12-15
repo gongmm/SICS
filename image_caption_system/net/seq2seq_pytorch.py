@@ -7,6 +7,7 @@
 -------------------------------------------------
 """
 import torch
+import os
 import torch.nn as nn
 from torch import optim
 import torch.nn.functional as F
@@ -24,9 +25,10 @@ cuda = True
 device = 0
 
 # model_path = "./models/"
-model_path = "/Users/wangyawen/PycharmProjects/SICS/image_caption_system/net/models/"
-seq_to_seq_test_model_fname = "seq_to_txt_state.tar"
-epoch_to_save_path = lambda epoch: model_path + "seq_to_txt_state_%d.tar" % int(epoch)
+base_path = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_path, "models")
+seq_to_seq_test_model_fname = "/factual_to_romantic.tar"
+epoch_to_save_path = lambda epoch: model_path + "factual_to_romantic_%d.tar" % int(epoch)
 
 BATCH_SIZE = 128
 ROM_STYLE = "ROMANCETOKEN"
